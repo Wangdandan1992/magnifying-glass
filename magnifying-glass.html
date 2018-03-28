@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			body{
+				margin: 0;
+				background-color: peachpuff;
+			}
+			#box{
+				float: left;
+				width: 500px;
+				height: 500px;
+				border: 1px solid #000;
+				margin-left: 20px;
+				background: url(img/3.jpg.jpg) no-repeat;
+				position: relative;
+				background-size: 500px 500px;
+				border-radius: 10px;
+			}
+			#box span{
+				width: 100px;
+				height: 100px;
+				border-radius: 50px;
+				background-color: pink;
+				opacity: 0.5;
+				position: absolute;
+				left:0;
+				top:0;
+			}
+			.round{
+				float: left;
+				width: 500px;
+				height: 500px;
+				border-radius: 250px;
+				margin-left: 50px;
+				border: 1px solid #000;
+				position: relative;
+				overflow: hidden;
+			}
+			.round span{
+				width: 2500px;
+				height: 2500px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: url(img/3.jpg.jpg);
+				background-size: 2500px 2500px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<span></span>
+		</div>
+		<div class="round">
+			<span></span>
+		</div>
+		
+		
+		
+		
+		<script>
+			
+			var box = document.querySelector('#box');
+			
+			var span = document.querySelectorAll('span')[0];
+			
+			var round = document.querySelector('.round');
+			
+			var img = document.querySelectorAll('span')[1];
+			
+			box.onmousemove = function(ev){
+				
+				var x = ev.clientX;
+				var y = ev.clientY;
+				
+				var l = x-this.offsetLeft-span.offsetWidth/2;
+				var t = y-this.offsetTop-span.offsetHeight/2;
+				
+				if(l<=0){
+					l=0;
+				}
+				if(l>=this.offsetWidth-span.offsetWidth){
+					l=this.offsetWidth-span.offsetWidth;
+				}
+				if(t<=0){
+					t=0;
+				}
+				if(t>=this.offsetHeight-span.offsetHeight){
+					t=this.offsetHeight-span.offsetHeight;
+				}
+				
+				span.style.left = l+'px';
+				span.style.top = t+'px';
+				
+				var lef = img.offsetWidth/this.offsetWidth;
+				var to = img.offsetHeight/this.offsetHeight;
+				
+				img.style.left = -(l*lef)+'px';
+				img.style.top = -(t*to)+'px';
+			}
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
